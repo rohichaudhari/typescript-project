@@ -124,4 +124,18 @@ const updateProfile = async (req: Request, res: Response) => {
     }
   };
 
+  const deleteUser = async (req: Request,res: Response) =>{
+    try {
+        let user =  req.user;
+        user = (await userService.deleteuser(
+          req.user?._id as ObjectId,
+          {isDelete:true}
+        )) as IUser;
+        res.status(202).json({user,message:'user delete successfully'});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message:'Internal server error'})
+    }
+};
+
 export { registerUser, loginUser, getProfile, changePassword, updateProfile };

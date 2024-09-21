@@ -18,14 +18,17 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 // user Routes
-import appRoutes from "./routes/user.route";
-app.use("/api/user", appRoutes);
+import userRoutes from "./routes/user.route";
+app.use("/api/user",userRoutes);
 
+// product routes
+import productRoutes from "./routes/product.routes";
+app.use("/api/product",productRoutes);
 
 app.listen(port, async () => {
   await mongoose
     .connect(dbUrl)
-    .then(() => console.log(`DB is Connected!!!!`))
+    .then(() => console.log(`Database connected sucessfully......`))
     .catch((err) => console.log(err));
   console.log(`Server is start at http://localhost:${port}`);
 });

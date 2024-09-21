@@ -44,4 +44,14 @@ export default class UserServices {
       return error;
     }
   }
+
+  // delete user
+  async deleteuser (id: ObjectId,body: object){
+    try {
+      return await User.findByIdAndUpdate(id, { $set: body }, { new: true });
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
 }
