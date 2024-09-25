@@ -25,6 +25,14 @@ app.use("/api/user",userRoutes);
 import productRoutes from "./routes/product.routes";
 app.use("/api/product",productRoutes);
 
+// cart routes
+import cartRoutes from "./routes/cart.route";
+app.use("/api/cart",cartRoutes);
+
+// order routes
+import orderRoutes from "./routes/order.route";
+app.use("/api/cart",orderRoutes);
+
 app.listen(port, async () => {
   await mongoose
     .connect(dbUrl)

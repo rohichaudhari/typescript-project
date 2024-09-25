@@ -1,32 +1,31 @@
 import mongoose from "mongoose";
 import { IProduct } from "../interface/IProduct";
- 
-const productSchema=new mongoose.Schema<IProduct>({
-    title:{
-        type:String,
-    unique:true
+
+const productSchema = new mongoose.Schema<IProduct>({
+    title: {
+        type: String,
+        unique: true
     },
-    description:{
-        type:String,
+    description: {
+        type: String,
     },
-    price:{
-        type:Number,
+    price: {
+        type: Number,
     },
-    productImage:{
-        type:String,
+    productImage: {
+        type: String,
     },
-    category:[{
-        type:String
+    category: [{
+        type: String
     }],
-    isdelete:{
-        type:Boolean,
-        default:false,
+    isDelete: {
+        type: Boolean,
+        default: false
     }
 },
 {
-    versionKey:false,
-    timestamps:true,
-},
+    versionKey: false,
+    timestamps: true
+});
 
-);
-export default mongoose.model('products',productSchema);
+export default mongoose.model('products', productSchema);

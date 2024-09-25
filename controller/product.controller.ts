@@ -27,9 +27,21 @@ export const addNewProduct = async (req: Request, res: Response) => {
   }
 };
 
-export const getAllProducts = async (req: Request, res: Response) => {
+export const getProducts = async (req: Request, res: Response) => {
   try {
     let products = (await productService.getProduct(
+      req.query
+    )) as IProduct[];
+    res.status(200).json(products);
+  } catch (error) {
+    console.log(error);
+    res.json({ message: "Internal Server Error" });
+  }
+};
+
+export const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    let products = (await productService.getAllProducts(
       req.query
     )) as IProduct[];
     res.status(200).json(products);
@@ -49,7 +61,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     }
     if (req.file) {
       req.body.productImage = req.file.path;
-    }
+    }4
     product = (await productService.updateProduct(productId, {
       ...req.body,
     })) as IProduct;
@@ -59,7 +71,6 @@ export const updateProduct = async (req: Request, res: Response) => {
     res.json({ message: "Internal Server Error" });
   }
 };
-
 
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
